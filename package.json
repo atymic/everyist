@@ -1,0 +1,32 @@
+{
+  "name": "everyist",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@breejs/later": "^4.0.2",
+    "@nuxtjs/auth": "^4.9.1",
+    "@nuxtjs/axios": "^5.12.2",
+    "@nuxtjs/color-mode": "1.0.3",
+    "@nuxtjs/google-fonts": "^1.0.3",
+    "@nuxtjs/tailwindcss": "3.1.0",
+    "@tailwindcss/ui": "^0.6.2",
+    "lodash": "^4.17.20",
+    "luxon": "^1.25.0",
+    "nuxt": "2.14.6",
+    "nuxt-auth-patched": "^4.9.4",
+    "rrule": "^2.6.6",
+    "tailwindcss-dark-mode": "^1.1.6",
+    "uuid": "^8.3.0",
+    "vuex": "^3.5.1"
+  },
+  "keywords": [],
+  "devDependencies": {
+    "@tailwindcss/custom-forms": "^0.2.1",
+    "tailwindcss": "^1.8.10"
+  }
+}

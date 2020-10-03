@@ -1,0 +1,15 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+.dark-mode body {
+    @apply bg-gray-800 text-white;
+}
+
+.form-label {
+    @apply text-white mb-2;
+}
+
+.form-help {
+    @apply text-gray-200 text-sm mt-2;
+}
