@@ -36,6 +36,12 @@ export default {
         token_key: 'access_token',
         state: 'XXXXXXXXZZZZZZZZZYYYYYY',
       }
-    }
+    },
+    redirect: {
+      login: '/',
+      logout: '/',
+      home: '/',
+      callback: '/login/'
+    },
   }
 };
