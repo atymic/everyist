@@ -8,7 +8,6 @@ export default {
     "nuxt-auth-patched",
   ],
   tailwindcss: {
-    // add '~tailwind.config` alias
     exposeConfig: true
   },
   purgeCSS: {

@@ -104,7 +104,7 @@
           </svg>
         </div>
         <h3 class="text-xl font-semibold mt-2">{{ scheduleDates.length }} Tasks created</h3>
-        <p class="max-w-sm text-center text-sm">Your tasks have been created. Check you todoist!</p>
+        <p class="max-w-sm text-center text-sm">Your tasks have been created. Check your todoist!</p>
         <button @click="reset" class="bg-gray-700 py-2 px-4 rounded shadow hover:bg-gray-600 mt-8">
           Create More
         </button>
@@ -147,56 +147,58 @@ export default {
   },
   methods: {
     parseSchedule () {
-      {
-        let schedule
-        try {
-          schedule = RRule.fromText(this.schedule)
-        } catch (e) {
-          this.scheduleError = e.message
-          this.scheduleExamples = []
-          return
-        }
-
-        if (schedule.count === null || schedule.count < 2) {
-          this.scheduleError = `Invalid Schedule String`
-          this.scheduleExamples = []
-          return
-        }
-
-        this.scheduleError = null
-
-        let time = null
-
-        if (this.time) {
-          try {
-            time = DateTime.fromFormat(this.time, 'HH:mm')
-          } catch (e) {
-            this.scheduleError = `Invalid time string ${this.time}`
-            return
-          }
-        }
-
-        this.scheduleExamples = schedule.all((date, i) => i < 10).map(date => {
-          const d = DateTime.fromJSDate(date)
-
-          if (time && time.hour) {
-
-            return d.set({ hour: time.hour, minute: time.minute }).toFormat('EEE, ff')
-          }
-
-          return d.toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY)
-        })
-
-        this.scheduleDates = schedule.all((date, i) => i < this.occurrences).map(date => {
-          const d = DateTime.fromJSDate(date)
-
-          if (time && time.hour) {
-            return d.set({ hour: time.hour, minute: time.minute })
-          }
-
-          return d.set({ hour: 0, minute: 0 })
-        })
+      if (!this.schedule) {
+        return;
       }
+
+      let schedule
+      try {
+        schedule = RRule.fromText(this.schedule)
+      } catch (e) {
+        this.scheduleError = e.message
+        this.scheduleExamples = []
+        return
+      }
+
+      if (schedule.count === null || schedule.count < 2) {
+        this.scheduleError = `Invalid Schedule String`
+        this.scheduleExamples = []
+        return
+      }
+
+      this.scheduleError = null
+
+      let time = null
+
+      if (this.time) {
+        try {
+          time = DateTime.fromFormat(this.time, 'HH:mm')
+        } catch (e) {
+          this.scheduleError = `Invalid time string ${this.time}`
+          return
+        }
+      }
+
+      this.scheduleExamples = schedule.all((date, i) => i < 10).map(date => {
+        const d = DateTime.fromJSDate(date)
+
+        if (time && time.hour) {
+
+          return d.set({ hour: time.hour, minute: time.minute }).toFormat('EEE, ff')
+        }
+
+        return d.toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY)
+      })
+
+      this.scheduleDates = schedule.all((date, i) => i < this.occurrences).map(date => {
+        const d = DateTime.fromJSDate(date)
+
+        if (time && time.hour) {
+          return d.set({ hour: time.hour, minute: time.minute })
+        }
+
+        return d.set({ hour: 0, minute: 0 })
+      })
     },
     edit () {
       this.loading = false
