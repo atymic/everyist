@@ -1,7 +1,5 @@
 export default {
-  /*
-   ** Nuxt.js modules
-   */
+  target: 'static',
   buildModules: [
     "@nuxtjs/color-mode",
     "@nuxtjs/tailwindcss",
