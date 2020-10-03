@@ -37,6 +37,7 @@ export default {
         state: 'XXXXXXXXZZZZZZZZZYYYYYY',
       }
     },
+    defaultStrategy: 'todoist',
     redirect: {
       login: '/',
       logout: '/',
