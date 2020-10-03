@@ -30,7 +30,7 @@
           <span class="form-label">Task Name</span>
           <input v-model="task" type="text" class="form-input form-input-dark mt-1 block w-full"
                  placeholder="My Awesome Task">
-          <span class="form-help">You can use use #projectname and @label here</span>
+          <span class="form-help">You can use @label here</span>
         </label>
         <div class="sm:flex mt-4">
           <label class="block flex-grow mr-4">
