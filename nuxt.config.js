@@ -6,6 +6,9 @@ export default {
     "@nuxtjs/google-fonts",
     "@nuxtjs/axios",
     "nuxt-auth-patched",
+    ['@nuxtjs/google-analytics', {
+      id: 'UA-147215234-3'
+    }]
   ],
   tailwindcss: {
     exposeConfig: true
