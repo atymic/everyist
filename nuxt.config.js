@@ -21,6 +21,10 @@ export default {
       Inter: true
     }
   },
+  colorMode: {
+    preference: 'dark', // default value of $colorMode.preference
+    fallback: 'dark', // fallback value if not system preference found
+  },
   auth: {
     strategies: {
       todoist: {
