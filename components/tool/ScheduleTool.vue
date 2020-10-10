@@ -30,8 +30,23 @@
           <span class="form-label">Task Name</span>
           <input v-model="task" type="text" class="form-input form-input-dark mt-1 block w-full"
                  placeholder="My Awesome Task">
-          <span class="form-help">You can use @label here</span>
         </label>
+        <div class="mt-4 grid grid-cols-2 gap-4">
+          <div>
+            <span class="form-label mb-2">
+              Project
+              <span class="text-sm text-gray-500">(optional)</span>
+            </span>
+            <multiselect class="mt-1" v-model="project" track-by="id" label="name" :options="$auth.user.projects"></multiselect>
+          </div>
+          <div>
+            <span class="form-label mb-2">
+              Labels
+              <span class="text-sm text-gray-500">(optional)</span>
+            </span>
+            <multiselect class="mt-1" v-model="labels" :multiple="true" track-by="id" label="name" :options="$auth.user.labels"></multiselect>
+          </div>
+        </div>
         <div class="sm:flex mt-4">
           <label class="block flex-grow mr-4">
             <span class="form-label">Schedule</span>
@@ -120,12 +135,14 @@ import { chunk, debounce } from 'lodash'
 import { DateTime } from 'luxon'
 import ExampleTime from '~/components/tool/ExampleTime'
 import { v4 as uuidv4 } from 'uuid'
+import Multiselect from 'vue-multiselect'
 
 export default {
   name: 'ScheduleTool',
   components: {
     ExampleTime,
     TButton,
+    Multiselect
   },
   props: {
     disabled: Boolean,
@@ -137,6 +154,8 @@ export default {
       task: null,
       schedule: null,
       time: null,
+      project: null,
+      labels: [],
       occurrences: 10,
       scheduleExamples: [],
       scheduleDates: [],
@@ -208,6 +227,8 @@ export default {
     },
     reset () {
       this.task = null
+      this.project = null
+      this.labels = []
       this.schedule = null
       this.occurrences = 10
       this.scheduleExamples = []
@@ -268,7 +289,7 @@ export default {
           ? { date: date.toFormat(`kkkk-LL-dd'T'HH:mm:00`) }
           : { date: date.toFormat('kkkk-LL-dd') }
 
-      return {
+      const data =  {
         type: 'item_add',
         temp_id: uuidv4(),
         uuid: uuidv4(),
@@ -278,6 +299,16 @@ export default {
           auto_parse_labels: true,
         },
       }
+
+      if (this.project) {
+        data.args.project_id = this.project.id
+      }
+
+      if (this.labels && this.labels.length) {
+        data.args.labels = this.labels.map(l => l.id)
+      }
+
+      return data;
     },
   },
   watch: {

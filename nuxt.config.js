@@ -31,7 +31,7 @@ export default {
         _scheme: 'oauth2',
         authorization_endpoint: 'https://todoist.com/oauth/authorize',
         access_token_endpoint: 'https://todoist.com/oauth/access_token',
-        userinfo_endpoint: 'https://api.todoist.com/sync/v8/sync?sync_token=%2A&resource_types=%5B%22user%22%5D',
+        userinfo_endpoint: 'https://api.todoist.com/sync/v8/sync?sync_token=%2A&resource_types=%5B%22user%22%2C%20%22labels%22%2C%20%22projects%22%5D',
         scope: ['data:read_write'],
         access_type: undefined,
         response_type: 'code',

@@ -1,6 +1,7 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+@import "vue-multiselect/dist/vue-multiselect.min.css";
 
 .dark-mode body {
     @apply bg-gray-800 text-white;
@@ -12,4 +13,31 @@
 
 .form-help {
     @apply text-gray-200 text-sm mt-2;
+}
+
+.multiselect__input, .multiselect__content {
+    @apply bg-gray-900;
+}
+
+
+.multiselect__tags, .multiselect__content-wrapper {
+    @apply bg-gray-900;
+    border: none;
+}
+
+.multiselect__option {
+    @apply text-white;
+}
+
+.multiselect__option--selected {
+    @apply bg-gray-700;
+}
+
+
+.multiselect__single {
+    @apply bg-gray-900 text-gray-300;
+}
+
+.multiselect__placeholder {
+    @apply text-gray-400;
 }
